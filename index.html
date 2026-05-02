@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Базовый курс по ИИ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 750px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+            letter-spacing: -0.01em;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .lesson-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--primary-color);
+        }
+
+        .lesson-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            background: rgba(37, 99, 235, 0.1);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            width: fit-content;
+        }
+
+        .lesson-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .lesson-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .lesson-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.9375rem;
+        }
+
+        .lesson-button:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 40px;
+            margin-top: 80px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 16px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.25rem; }
+            .lessons-grid { grid-template-columns: 1fr; }
+            .cta-title { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container hero-content" style="padding: 0;">
+            <h1 class="hero-title">Искусство эффективной работы<br>с нейросетями. <span>Базовый курс.</span></h1>
+            <p class="hero-description">Систематизированное руководство по превращению нейросетей из «умных чат-ботов» в полноценных интеллектуальных партнеров.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Программа занятий</h2>
+        
+        <div class="lessons-grid">
+
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 00</div>
+                <h3 class="lesson-title">00. Какой ИИ выбрать?</h3>
+                <p class="lesson-desc">Обзор рынка нейросетей (более 1,5 млн открытых моделей). Вы узнаете, почему разные модели лидируют в разных задачах (текст, код, математика), и поймете главный принцип: «мусор на входе — мусор на выходе».</p>
+                <a href="https://docs.google.com/document/d/1TnVvM9ldXAPYRsKHDmZntckQaY3qAreMS-7A_TvhVJk?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 01</div>
+                <h3 class="lesson-title">01. Для каких случаев какую модель применять?</h3>
+                <p class="lesson-desc">Сравнительный анализ ChatGPT, Gemini, Claude, Grok и специализированных сервисов вроде Perplexity. Разбор трех типов задач: от простых кулинарных рецептов до серьезных аналитических рассуждений.</p>
+                <a href="https://docs.google.com/document/d/1fQ1dbZwXSW3NMbQLkxfalEBQMPtZSoTfEq2XeGVXEOE?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 02</div>
+                <h3 class="lesson-title">02. Введение в chatGPT</h3>
+                <p class="lesson-desc">Регистрация, настройка интерфейса и работа с мобильным приложением. Мы разберем, чем платный тариф отличается от бесплатного и почему голосовое общение с ИИ — это новый стандарт продуктивности.</p>
+                <a href="https://docs.google.com/document/d/1uyR0blQrxj24DaG2hebfhcSMZJPARPdkFttNhsfAfUA?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 03</div>
+                <h3 class="lesson-title">03. Как правильно задавать вопросы?</h3>
+                <p class="lesson-desc">Основы промптинга: структура идеального запроса, декомпозиция сложных задач и настройка «личности» ассистента. Вы научитесь избегать типичных ошибок, из-за которых ИИ выдает слабые результаты.</p>
+                <a href="https://docs.google.com/document/d/1cO0YinacIPvQm6zkmBalq0n4sJKZ86Y7hRfZvq22YHM?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 04</div>
+                <h3 class="lesson-title">04. Как ускорится сразу в 3 раза.</h3>
+                <p class="lesson-desc">Практическое руководство по внедрению голосового ввода. Вы узнаете, как перестать печатать и начать диктовать мысли так, чтобы ИИ мгновенно превращал их в идеальный текст.</p>
+                <a href="https://docs.google.com/document/d/1MK1P3MZgBtz3orAu62dvQjuap9kVILSxb24F20Z17tU?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 05</div>
+                <h3 class="lesson-title">05. Работа с рутинными задачами</h3>
+                <p class="lesson-desc">Создание собственных GPTs под конкретные процессы. Вы поймете, как превратить чат в навороченный бизнес-инструмент, который сам заполняет анкеты, проводит опросы и следует вашим сценариям.</p>
+                <a href="https://docs.google.com/document/d/1RFjiEEULKIC6DHZuAH99e6sFdNSg5HmOqn4eLxmXJwM?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 06</div>
+                <h3 class="lesson-title">06. Как заставить ИИ использовать ваш материал?</h3>
+                <p class="lesson-desc">Мастер-класс по работе с контекстом: как загружать свои документы, базы данных и уникальные знания, чтобы ИИ отвечал, опираясь только на вашу фактуру.</p>
+                <a href="https://docs.google.com/document/d/1D7KBKsqs61fHzbK4SYbdwh7-ZKMqtnKoNXSnv22xAOw?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 07</div>
+                <h3 class="lesson-title">07. Как спрашивать, чтобы решать серьезные проблемы?</h3>
+                <p class="lesson-desc">Продвинутый промптинг для решения комплексных кейсов. Изучаем техники «цепочки рассуждений» и методы, которые заставляют модель глубоко анализировать проблему перед ответом.</p>
+                <a href="https://docs.google.com/document/d/1-8GNQAxkH5tMA9H8GS44H_KqXMOtwAZuE6l4GJnw1T0?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 08</div>
+                <h3 class="lesson-title">08. Эффективное редактирование текстов</h3>
+                <p class="lesson-desc">Работа в режиме «Холст» (Canvas). Как превратить ИИ в профессионального корректора и редактора, который не просто переписывает, а улучшает стиль, логику и структуру ваших текстов.</p>
+                <a href="https://docs.google.com/document/d/16prfJ4eSxFGF91ylONvIDot6KS8cHEUuF6YI-wgjUAE?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 09</div>
+                <h3 class="lesson-title">09. Как делать Deep Research</h3>
+                <p class="lesson-desc">Погружение в аналитический поиск. Вы научитесь использовать ИИ для сбора данных, проверки фактов и написания масштабных отчетов, которые раньше требовали недель работы.</p>
+                <a href="https://docs.google.com/document/d/16NANkufpjAFqETxyfzXhrLaDzKoxB_me6Yr7T-Dqnmw?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 10</div>
+                <h3 class="lesson-title">10. Создание изображений, видео, музыки, голосовой озвучки.</h3>
+                <p class="lesson-desc">Базовый обзор генеративного медиа-контента. Знакомство с Midjourney, SORA, Kling и ElevenLabs для быстрого создания иллюстраций, анимированных аватаров и качественной озвучки текстов.</p>
+                <a href="https://docs.google.com/document/d/1eZB87Eou3s6oJE5RedHUOwwFIQpgAagJbdNVw0nA4Hc?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 11</div>
+                <h3 class="lesson-title">11. Раньше были чат-боты — сейчас кое-что новое.</h3>
+                <p class="lesson-desc">История развития технологий: от примитивных «кнопочных» ботов техподдержки к современным автономным ассистентам, способным понимать неструктурированные данные.</p>
+                <a href="https://docs.google.com/document/d/1pG6rxpWYx4u2IfoUDTUV6FcOo80ANgspwkSrLADMXvU?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 12</div>
+                <h3 class="lesson-title">12. В чём разница между ИИ Агентом и Ассистентом?</h3>
+                <p class="lesson-desc">Концептуальный разбор: почему ассистент — это просто чат, а агент — это цепочка действий и решений. Вы поймете, как выстраивать «дорожные карты» для ИИ, чтобы он выполнял задачи «под ключ».</p>
+                <a href="https://docs.google.com/document/d/1rAVWWmjGPKIXKuk5v3OM7QXItvMQ7nbDw6zFNvgoVZA?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-number">Урок 13</div>
+                <h3 class="lesson-title">13. Введение в большие возможности ИИ</h3>
+                <p class="lesson-desc">Взгляд в будущее: мультиагентные системы, самообучающиеся алгоритмы и новые горизонты, которые открываются перед теми, кто освоил базу. Подготовка к следующему этапу обучения.</p>
+                <a href="https://docs.google.com/document/d/1x50xpykfxeYcV9InlxzjtX9hZl0smU4mmWk0BZ-h7w4?usp=drive_fs" target="_blank" class="lesson-button">Перейти к уроку</a>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Остались вопросы? Проверьте себя!</h2>
+            <p class="cta-description">Задавайте любые вопросы по темам курса нашему ИИ-ассистенту и проходите интерактивные тесты для самопроверки.</p>
+            <a href="https://notebooklm.google.com/notebook/6eadf073-c4e4-4fd3-96d2-7346d99e050f" target="_blank" class="cta-button">Открыть NotebookLM</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Базовый курс по ИИ. Создано для эффективного обучения.
+    </footer>
+</body>
+</html>
